@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="iterative-counter">
+      <ul>
+        <li>
+          <label><input type="checkbox" class="angular" />Angular</label>
+        </li>
+        <li>
+          <label><input type="checkbox" class="react" />React</label>
+        </li>
+        <li>
+          <label><input type="checkbox" class="vue" />Vue</label>
+        </li>
+      </ul>
+      <p class="count" data-unit="个">框架:</p>
+      <p class="weight" data-unit="%">权重:</p>
+    </div>
+    <style>
+      ul,
+      li {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .iterative-counter {
+        width: 300px;
+        margin: 100px auto;
+      }
+      .iterative-counter ul {
+        counter-reset: index 0 count 0 weight 0;
+      }
+      .iterative-counter ul li {
+        counter-increment: index 1;
+      }
+      .iterative-counter ul li::before {
+        content: counter(index) '. ';
+      }
+
+      .iterative-counter ul li input[type='checkbox'] {
+        margin-right: 10px;
+      }
+      .iterative-counter p {
+        margin-top: 10px;
+      }
+      .iterative-counter p.count::after {
+        content: '  ' counter(count) attr(data-unit);
+      }
+      .iterative-counter p.weight::after {
+        content: '  ' counter(weight) attr(data-unit);
+      }
+      .iterative-counter ul li .angular:checked {
+        counter-increment: count 1 weight 20;
+      }
+      .iterative-counter ul li .react:checked {
+        counter-increment: count 1 weight 50;
+      }
+      .iterative-counter ul li .vue:checked {
+        counter-increment: count 1 weight 30;
+      }
+    </style>
+  </body>
+</html>
