@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="#" class="form" id="form">
+      <h3>注册</h3>
+      <input
+        class="formItem"
+        type="text"
+        placeholder="请输入手机或者邮箱"
+        pattern="^1[3456789]\d{9}$|^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$"
+        required
+      />
+      <input
+        class="formItem"
+        type="password"
+        placeholder="请输入密码(6 到 20 位字符)"
+        pattern="^[\dA-Za-z_]{6,20}$"
+        required
+      />
+      <ul>
+        <li>
+          <input type="radio" name="sex" id="male" checked />
+          <label for="male">Boy</label>
+        </li>
+        <li>
+          <input type="radio" name="sex" id="female" />
+          <label for="female">Girl</label>
+        </li>
+      </ul>
+      <button type="button" id="formSubmit">注册</button>
+    </form>
+    <script>
+      let form = document.getElementById('form')
+      let formSubmit = document.getElementById('formSubmit')
+      formSubmit.onclick = () => {
+        console.log(form.value)
+      }
+    </script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      ul,
+      li {
+        list-style: none;
+        padding: 0;
+      }
+      .form {
+        width: 300px;
+        position: relative;
+        margin: 100px auto 0;
+        padding: 25px;
+        border-radius: 4px;
+        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+      }
+      .form h3 {
+        font-weight: bold;
+        font-size: 16px;
+        color: #333;
+      }
+      .form .formItem {
+        margin-top: 10px;
+      }
+      .form ul {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+        line-height: 30px;
+        height: 30px;
+      }
+      .form ul li {
+        position: relative;
+        width: 45%;
+        transition: all 300ms;
+      }
+      .form ul li:focus-within {
+        background: linear-gradient(90deg, #09f 50%, transparent 0) repeat-x,
+          linear-gradient(90deg, #09f 50%, transparent 0) repeat-x,
+          linear-gradient(0deg, #09f 50%, transparent 0) repeat-y,
+          linear-gradient(0deg, #09f 50%, transparent 0) repeat-y;
+        background-position: 0 0, 0 100%, 0 0, 100% 0;
+        background-size: 8px 1px, 8px 1px, 1px 8px, 1px 8px;
+        animation: move 500ms infinite linear;
+      }
+      .form input.formItem {
+        padding: 10px;
+        outline: none;
+        border: 1px solid #e9e9e9;
+        border-radius: 2px;
+        width: 100%;
+        height: 40px;
+        transition: all 300ms;
+      }
+      .form input.formItem:focus:valid {
+        border-color: #09f;
+      }
+      .form input.formItem:focus:invalid {
+        border-color: #f66;
+      }
+      .form ul li input[type='radio'] {
+        position: absolute;
+        width: 0;
+        height: 0;
+      }
+      .form ul li input[type='radio']:checked + label {
+        border: 3px solid transparent;
+        background-color: #09f;
+        color: #fff;
+      }
+      .form ul li label {
+        display: block;
+        border-bottom: 1px solid #ccc;
+        width: 100%;
+        background-clip: padding-box;
+        cursor: pointer;
+        text-align: center;
+        transition: all 300ms;
+      }
+      .form button {
+        overflow: hidden;
+        margin-top: 10px;
+        outline: none;
+        border: none;
+        border-radius: 2px;
+        width: 100%;
+        height: 40px;
+        background-color: #09f;
+        cursor: pointer;
+        color: #fff;
+        transition: all 300ms;
+      }
+      .form input.formItem:invalid ~ button {
+        pointer-events: none;
+        background: #ccc;
+      }
+      /* .form input.formItem:invalid ~ button:focus {
+        cursor: ns-resize;
+      } */
+      @keyframes move {
+        to {
+          background-position: 6% 0, -6% 100%, 0 -6%, 100% 6%;
+        }
+      }
+    </style>
+  </body>
+</html>
